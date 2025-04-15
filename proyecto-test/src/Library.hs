@@ -1,5 +1,8 @@
 module Library where
 import PdePreludat
 
-doble :: Number -> Number
-doble numero = numero + numero
+signo :: Number -> Char
+signo numero  | numero > 0 = '+'
+              | numero < 0 = '-'
+              | numero == 0 = '0'
+
