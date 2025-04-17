@@ -3,7 +3,7 @@ import PdePreludat
 
 signo :: Number -> Char
 signo numero  | numero > 0 = '+'
-              | numero < 0 = '-'--ingresar numero negativo entre () 
+              | numero < 0 = '-' --ingresar numero negativo entre () 
               | numero == 0 = '0'
 
 
@@ -13,3 +13,7 @@ probLluvias clima  | clima == "despejado" = 0
                    | clima == "nublado" = 25 
                    | clima == "lluvioso" = 100 
                    | otherwise = 50 
+
+maximo :: Number -> Number -> Number -> Number
+maximo num1 num2 num3 = max (max num1 num2) num3
+
