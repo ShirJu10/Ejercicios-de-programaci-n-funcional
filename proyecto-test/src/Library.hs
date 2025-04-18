@@ -21,3 +21,6 @@ bisiesto :: Number -> Bool
 bisiesto anio  | mod anio 4 == 0 && mod anio 100 /= 0 = True
                | mod anio 400 == 0 = True
                | otherwise = False
+
+esMultiploDeTres :: Number -> Bool
+esMultiploDeTres numero = mod numero 3 == 0
