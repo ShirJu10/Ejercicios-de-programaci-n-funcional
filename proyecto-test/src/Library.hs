@@ -49,3 +49,21 @@ superficieAzulClaro lado = pi * (lado / 2) ^ 2
 
 superficieAzulOscuro:: Number -> Number
 superficieAzulOscuro lado = lado ^ 2 / 2
+
+-- TEMPERATURAS
+
+-- pasa una temperatura en grados Celsius a grados Fahrenheit.
+celsiusToFahr :: Number -> Number
+celsiusToFahr celsius = celsius * 9 / 5 + 32
+
+fahrToCelsius :: Number -> Number
+fahrToCelsius fahrenheit = (fahrenheit - 32) * 5 / 9
+
+-- indica si una temperatura expresada en grados Fahrenheit es fría. Decimos que hace frío si la temperatura es menor a 8 grados Celsius.
+
+haceFrioF :: Number -> Bool
+haceFrioF fahrenheit = (fahrToCelsius fahrenheit) < 8
+
+-- Multiplicaciones sucesivas
+
+
