@@ -24,3 +24,9 @@ bisiesto anio  | mod anio 4 == 0 && mod anio 100 /= 0 = True
 
 esMultiploDeTres :: Number -> Bool
 esMultiploDeTres numero = mod numero 3 == 0
+
+esMultiploDe :: Number -> Number -> Bool
+esMultiploDe numero multiplo = mod multiplo numero == 0
+
+esPar :: Number -> Bool
+esPar numero = even numero
