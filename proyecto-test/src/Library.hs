@@ -64,6 +64,11 @@ fahrToCelsius fahrenheit = (fahrenheit - 32) * 5 / 9
 haceFrioF :: Number -> Bool
 haceFrioF fahrenheit = (fahrToCelsius fahrenheit) < 8
 
--- Multiplicaciones sucesivas
+-- MULTIPLICACIONES SUCESIVAS
+
+--Obtener el factorial de un número
+factorial :: Number -> Number
+factorial num = foldl (*) 1 [1..num]-- recorre de 1 en 1 hasta el num multiplicando
+
 
 
