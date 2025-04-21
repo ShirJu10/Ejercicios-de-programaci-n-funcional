@@ -70,5 +70,9 @@ haceFrioF fahrenheit = (fahrToCelsius fahrenheit) < 8
 factorial :: Number -> Number
 factorial num = foldl (*) 1 [1..num]-- recorre de 1 en 1 hasta el num multiplicando
 
-
+-- Elevar un número a una potencia (solo potencias enteras no negativas)
+potencia :: Number -> Number -> Number
+potencia base exponente 
+                    | exponente == 0 = 1
+                    | exponente >0 = base * potencia base (exponente - 1)
 
