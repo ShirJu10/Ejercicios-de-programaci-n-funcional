@@ -76,3 +76,6 @@ potencia base exponente
                     | exponente == 0 = 1
                     | exponente >0 = base * potencia base (exponente - 1)
 
+--Averiguar si un número es cuadrado perfecto
+cuadradoPerfecto :: Number -> Bool 
+cuadradoPerfecto num = (sqrt num) ^ 2 == num -- no se porque no me da con 9 
