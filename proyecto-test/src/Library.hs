@@ -128,10 +128,6 @@ s1 = ["hola", "shirly", "juju", "jujuuuuuuuu"] --para ejecutar: filter esCorta s
 
 -- Por último, los nomus high-end poseen una fuerza mayor a 10000
 
-
---PARTE 2 Dada una lista de nomus se quiere entrenarlos y saber si el ejercito puede ir a la guerra despues del entrenamiento. 
---Entrenar un nomu aumenta su fuerza dos mil veces y para que un ejercito pueda ir a la guerra todos los nomus deben tener una fuerza mayor a 2500. Ademas queremos saber cuales nomus de nuestro ejercito, para eso deben cumplir la condicion de la parte 1.
-
 data Nomus = Nomu {ojos:: Number, fuerza :: Number}
             deriving Show
 
@@ -150,7 +146,22 @@ nomu1 = Nomu {ojos = 0, fuerza = 123}
 nomu2 :: Nomus 
 nomu2 = Nomu {ojos = 5, fuerza = 9748} 
 
+--PARTE 2 Dada una lista de nomus se quiere entrenarlos y saber si el ejercito puede ir a la guerra despues del entrenamiento. 
+--Entrenar un nomu aumenta su fuerza dos mil veces y para que un ejercito pueda ir a la guerra todos los nomus deben tener una fuerza mayor a 2500. Ademas queremos saber cuales nomus de nuestro ejercito, para eso deben cumplir la condicion de la parte 1.
+
 --parte 2
-nomus = [nomu1, nomu2]
-ejercito :: [Nomu]
-ejercito nomus = 
+lista :: [Nomus]
+lista = [nomu1, nomu2]
+
+
+entrenamiento :: [Nomus] -> [Nomus]
+entrenamiento lista = map entrenar lista
+    where entrenar nomu = Nomu {ojos = ojos nomu, fuerza = fuerza nomu * 2000}
+
+puedeIrAGuerra :: [Nomus] -> Bool
+puedeIrAGuerra lista = all (\nomu -> fuerza nomu > 2500) . (map entrenar)
+
+
+
+
+
