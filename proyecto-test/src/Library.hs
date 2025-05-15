@@ -117,11 +117,13 @@ s1 = ["hola", "shirly", "juju", "jujuuuuuuuu"] --para ejecutar: filter esCorta s
 --PARTE 1 NOMUS
 data Nomus = Nomu {
     ojos:: Number, 
-    fuerza :: Number
+    fuerza :: Number,
+    alas :: Number,
+    brazos :: Number
 } deriving Show
 
 categoria :: Nomus -> String
-categoria (Nomu _ fuerza) 
+categoria (Nomu _ fuerza _ _) 
             | fuerza < 1000 = "Nomus Pichis"
             | fuerza < 3000 && fuerza > 1000 = "Nomus Comunes"
             | fuerza < 10000 && fuerza > 3000 = "Nomus Fuertes"
@@ -131,11 +133,11 @@ vision :: Nomus -> Bool
 vision nomu = ojos nomu > 0 
 
 nomu1 :: Nomus 
-nomu1 = Nomu {ojos = 0, fuerza = 123} 
+nomu1 = Nomu {ojos = 0, fuerza = 123, alas = 5, brazos = 8} 
 nomu2 :: Nomus 
-nomu2 = Nomu {ojos = 5, fuerza = 9748} 
+nomu2 = Nomu {ojos = 5, fuerza = 9748,  alas = 0, brazos = 8} 
 nomu3 :: Nomus 
-nomu3 = Nomu {ojos = 8, fuerza = 500}
+nomu3 = Nomu {ojos = 8, fuerza = 500,  alas = 5, brazos = 0}
 
 --PARTE 2 
 
@@ -145,7 +147,9 @@ listaNomus = [nomu1, nomu2, nomu3]
 --Entrenar un nomu aumenta su fuerza dos mil veces 
 entrenamiento :: [Nomus] -> [Nomus]
 entrenamiento lista = map aumentoFuerza lista
-   where aumentoFuerza nomu = nomu {fuerza = fuerza nomu * 2000}
+
+aumentoFuerza :: Nomus -> Nomus
+aumentoFuerza nomu = nomu {fuerza = fuerza nomu * 2000}
 
 fuerzaMayor :: Nomus -> Bool
 fuerzaMayor nomu = fuerza nomu > 2500 
@@ -160,5 +164,25 @@ nomuFuerte = filter esFuerte
 esFuerte :: Nomus -> Bool
 esFuerte nomu = categoria nomu == "Nomus Fuertes"
 
+--PARTE 3
+esAereo :: Nomus -> Bool
+esAereo nomu = alas nomu > 0 && brazos nomu <= 0
 
+esTerrestre :: Nomus -> Bool
+esTerrestre nomu = alas nomu <= 0 && brazos nomu > 0
+
+esElegido :: Nomus -> Bool
+esElegido nomu = alas nomu > 0 && brazos nomu > 0
+
+cantidadAereos :: [Nomus] -> Number
+cantidadAereos = length.filter esAereo
+
+poderTotal :: [Nomus] -> Number
+poderTotal = sum . map fuerza . filter esTerrestre
+
+hayElegido :: [Nomus] -> Bool
+hayElegido = any esElegido
+
+--treino :: Nomus -> Nomus
+--treino nomu =  aumentoFuerza . aumentoFuerza
 
