@@ -186,3 +186,43 @@ hayElegido = any esElegido
 --treino :: Nomus -> Nomus
 --treino nomu =  aumentoFuerza . aumentoFuerza
 
+--Torneito de penales ejercico clase 16/05
+data Jugador = UnJugador {
+    edadJ :: Number,
+    nombreJ :: String, 
+    piernaHabil :: String,
+    potenciaTiro :: Number,
+    definicion :: Number
+} deriving (Show, Eq)
+
+gonzalo = UnJugador 22 "Gonzalo" "ambidiestro" 73 92
+
+juan = UnJugador  23 "Juan" "ninguna" 68 55
+
+data Arquero = UnArquero {
+    reflejos :: Number, 
+    altura :: Number, 
+    nacionalidad :: String,
+    nombre :: String,
+    edad :: Number
+} deriving (Show, Eq)
+
+agus = UnArquero 70 180 "Argentina" "Agus" 23
+
+patiarPenal :: Jugador -> Arquero -> Bool
+patiarPenal jugador arquero = potenciaTiro jugador > reflejos arquero
+
+panenka :: Jugador -> Bool -> Arquero -> Bool
+panenka jug miedo arq = miedo && definicion jug > (altura arq) /2 
+
+contarChiste :: String -> Jugador -> Arquero -> Bool
+contarChiste categoria jug arq = length categoria * edadJ jug > length (nacionalidad arq) * 15
+
+--Tiro con efecto psicológico: el jugador intenta desconcentrar al arquero mirándolo fijamente antes de patear. Se sabe cuánto tiempo lo miró (en segundos), y también si el arquero es muy susceptible a estas miradas. 
+--Si el tiempo de mirada es exactamente 3 segundos y el arquero es susceptible, el penal se mete. En cualquier otro caso, no.: 
+--El arquero es susceptible si su nacionalidad es “francés” y el jugador es “ambidiestro” o si la nacionalidad del arquero es “brasilero” y el jugador es “zurdo”. 
+efectoPsicologico :: Arquero -> Jugador -> Number -> Bool
+efectoPsicologico arq jug tiempoMirar = tiempoMirar == 3 && esSusceptible arq jug
+
+esSusceptible :: Arquero -> Jugador -> Bool
+esSusceptible arq jug = (nacionalidad arq == "francés" && piernaHabil jug == "ambidiestro") || (nacionalidad arq == "brasilero" && piernaHabil jug == "zurdo")
